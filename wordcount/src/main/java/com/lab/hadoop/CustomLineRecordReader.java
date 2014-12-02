@@ -50,7 +50,7 @@ public class CustomLineRecordReader
         // bytes for a single record
         Configuration job = context.getConfiguration();
         this.maxLineLength = job.getInt(
-                "mapred.linerecordreader.maxlength",
+                "mapreduce.input.linerecordreader.line.maxlength",
                 Integer.MAX_VALUE);
  
         // Split "S" is responsible for all records

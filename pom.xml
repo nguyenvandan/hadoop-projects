@@ -9,5 +9,6 @@
   	<module>common</module>
   	<module>hadoop-meta</module>
   	<module>eco-hadoop</module>
+  	<module>twitter-streaming</module>
   </modules>
 </project>
