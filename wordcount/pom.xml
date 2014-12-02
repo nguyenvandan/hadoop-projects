@@ -35,6 +35,15 @@
 				<password>hadoop</password>
 			</properties>
 		</profile>
+		<profile>
+			<id>cloudera</id>
+			<properties>
+				<hadoop.server>10.228.124.133</hadoop.server>
+				<server.fs>/home/cloudera/Hadoop/</server.fs>
+				<user>cloudera</user>
+				<password>cloudera</password>
+			</properties>
+		</profile>
 	</profiles>
 
 	<build>

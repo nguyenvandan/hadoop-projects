@@ -26,70 +26,6 @@
 	<profiles>
 
 		<profile>
-			<id>apache-1</id>
-			<activation>
-				<property>
-					<name>!hadoop.distro</name>
-				</property>
-			</activation>
-			<properties>
-				<hadoop.version>1.2.1</hadoop.version>
-			</properties>
-			<dependencies>
-				<dependency>
-					<groupId>org.apache.hadoop</groupId>
-					<artifactId>hadoop-core</artifactId>
-					<version>${hadoop.version}</version>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.hadoop</groupId>
-					<artifactId>hadoop-test</artifactId>
-					<version>${hadoop.version}</version>
-				</dependency>
-				<!-- Required to run -->
-				<dependency>
-					<groupId>log4j</groupId>
-					<artifactId>log4j</artifactId>
-					<version>1.2.17</version>
-				</dependency>
-				<dependency>
-					<groupId>com.sun.jersey</groupId>
-					<artifactId>jersey-core</artifactId>
-					<version>1.8</version>
-				</dependency>
-				<dependency>
-					<groupId>org.codehaus.jackson</groupId>
-					<artifactId>jackson-mapper-asl</artifactId>
-					<version>1.5.2</version>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.mrunit</groupId>
-					<artifactId>mrunit</artifactId>
-					<version>0.8.1-incubating</version>
-					<classifier>hadoop100</classifier>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-compiler-plugin</artifactId>
-						<configuration>
-							<excludes>
-								<exclude>LookupRecordByTemperature.java</exclude>
-								<exclude>LookupRecordsByTemperature.java</exclude>
-								<exclude>MaxTemperatureByStationNameUsingDistributedCacheFileApi.java</exclude>
-								<exclude>NewMissingTemperatureFields.java</exclude>
-								<exclude>SortByTemperatureToMapFile.java</exclude>
-							</excludes>
-						</configuration>
-					</plugin>					
-				</plugins>
-			</build>
-		</profile>
-
-		<profile>
 			<id>cdh3</id>
 			<activation>
 				<property>
@@ -341,7 +277,7 @@
 				</property>
 			</activation>
 			<properties>
-				<hadoop.version>2.2.0</hadoop.version>
+				<hadoop.version>2.5.2</hadoop.version>
 			</properties>
 			<dependencies>
 				<dependency>
@@ -641,6 +577,70 @@
 							</testExcludes>
 						</configuration>
 					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		
+		<profile>
+			<id>apache-1</id>
+			<activation>
+				<property>
+					<name>!hadoop.distro</name>
+				</property>
+			</activation>
+			<properties>
+				<hadoop1.version>1.2.1</hadoop1.version>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>org.apache.hadoop</groupId>
+					<artifactId>hadoop-core</artifactId>
+					<version>${hadoop1.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.hadoop</groupId>
+					<artifactId>hadoop-test</artifactId>
+					<version>${hadoop1.version}</version>
+				</dependency>
+				<!-- Required to run -->
+				<dependency>
+					<groupId>log4j</groupId>
+					<artifactId>log4j</artifactId>
+					<version>1.2.17</version>
+				</dependency>
+				<dependency>
+					<groupId>com.sun.jersey</groupId>
+					<artifactId>jersey-core</artifactId>
+					<version>1.8</version>
+				</dependency>
+				<dependency>
+					<groupId>org.codehaus.jackson</groupId>
+					<artifactId>jackson-mapper-asl</artifactId>
+					<version>1.5.2</version>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.mrunit</groupId>
+					<artifactId>mrunit</artifactId>
+					<version>0.8.1-incubating</version>
+					<classifier>hadoop100</classifier>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<configuration>
+							<excludes>
+								<exclude>LookupRecordByTemperature.java</exclude>
+								<exclude>LookupRecordsByTemperature.java</exclude>
+								<exclude>MaxTemperatureByStationNameUsingDistributedCacheFileApi.java</exclude>
+								<exclude>NewMissingTemperatureFields.java</exclude>
+								<exclude>SortByTemperatureToMapFile.java</exclude>
+							</excludes>
+						</configuration>
+					</plugin>					
 				</plugins>
 			</build>
 		</profile>
