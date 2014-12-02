@@ -21,7 +21,7 @@
 			<id>hadoopmaster</id>
 			<properties>
 				<hadoop.server>10.228.124.121</hadoop.server>
-				<server.fs>/home/hadoop/wordcount/</server.fs>
+				<server.fs>/home/hadoop/twitter/</server.fs>
 				<user>hadoop</user>
 				<password>hadoop</password>
 			</properties>
@@ -30,7 +30,7 @@
 			<id>hadoopnode</id>
 			<properties>
 				<hadoop.server>10.228.124.123</hadoop.server>
-				<server.fs>/home/hadoop/wordcount/</server.fs>
+				<server.fs>/home/hadoop/twitter/</server.fs>
 				<user>hadoop</user>
 				<password>hadoop</password>
 			</properties>
@@ -39,11 +39,20 @@
 			<id>cloudera</id>
 			<properties>
 				<hadoop.server>10.228.124.133</hadoop.server>
-				<server.fs>/home/cloudera/Hadoop/</server.fs>
+				<server.fs>/home/cloudera/Hadoop/twitter</server.fs>
 				<user>cloudera</user>
 				<password>cloudera</password>
 			</properties>
 		</profile>
+		<profile>
+			<id>coursera</id>
+			<properties>
+				<hadoop.server>10.228.124.171</hadoop.server>
+				<server.fs>/home/user/hadoop/twitter</server.fs>
+				<user>user</user>
+				<password>password</password>
+			</properties>
+		</profile>		
 	</profiles>
 
 	<dependencies>
@@ -55,12 +64,49 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.7</version>
+			<version>1.5.11</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>18.0</version>
 		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/lib</outputDirectory>
+							<overWriteReleases>false</overWriteReleases>
+							<overWriteSnapshots>false</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<mainClass>com.lab.hadoop.twitter.TweetStreaming</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>

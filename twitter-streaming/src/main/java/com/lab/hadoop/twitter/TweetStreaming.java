@@ -18,13 +18,8 @@ import com.twitter.hbc.httpclient.auth.OAuth1;
 
 public class TweetStreaming {
 
-	public void getStream() throws Exception {
-
-		String consumerKey = "1xB9LXDgzBUa3bopCCktTR4DCF";
-		String consumerSecret = "FAwjUfafaFNQFilfgO5PqkyDRZG4mnbiylTHWPz4ye32RwTeej";
-		String token = "2364587165-EQBO6cvCvXi8afeos4jrKi5Dgq2PD8kEyAhktvd";
-		String secret = "tQcRnNP86Cx5VOdXB6tTiwhSfOvqdxeT6o5u59sbfUa6Y";
-		
+	public void getStream(String consumerKey, String consumerSecret,
+			String token, String secret) throws Exception {
 		/**
 		 * Set up your blocking queues: Be sure to size these properly based on
 		 * expected TPS of your stream
@@ -48,7 +43,6 @@ public class TweetStreaming {
 		Authentication hosebirdAuth = new OAuth1(consumerKey, consumerSecret,
 				token, secret);
 
-		
 		ClientBuilder builder = new ClientBuilder()
 				.name("Hosebird-Client-01")
 				// optional: mainly for the logs
@@ -59,20 +53,26 @@ public class TweetStreaming {
 												// want to process client events
 
 		Client hosebirdClient = builder.build();
+
 		// Attempts to establish a connection.
 		hosebirdClient.connect();
 
 		// on a different thread, or multiple different threads....
 		while (!hosebirdClient.isDone()) {
 			String msg = msgQueue.take();
-			System.out.println(msg);			
+			System.out.println(msg);
 		}
-		
+
 		hosebirdClient.stop();
 	}
-	
+
 	public static void main(String[] args) throws Exception {
+		String consumerKey = "LMXxeA6hzvEQg9LVu8FFNog3V";
+		String consumerSecret = "hFv1e3LmFWdcVdfGKVjjDjrRX96yLwnHNqF9WxyxB0QqldqCaW";
+		String token = "2364587165-x9OTe5QGHc7nVU3MiEt5XSDnK4LlDU6Qh4bQwvA";
+		String secret = "mJ78HOmpzTdmkKswu9XeEGJbTShbazwaYJkl5oOJeADoq";
+
 		TweetStreaming tweetStream = new TweetStreaming();
-		tweetStream.getStream();
+		tweetStream.getStream(consumerKey, consumerSecret, token, secret);
 	}
 }
