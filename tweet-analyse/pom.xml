@@ -7,13 +7,14 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../hadoop-meta/pom.xml</relativePath>
 	</parent>
-	<artifactId>twitter-streaming</artifactId>
+	<artifactId>tweet-analyse</artifactId>
 
 	<properties>
 		<hadoop.server>10.228.124.133</hadoop.server>
 		<server.fs>/home/cloudera/Hadoop/</server.fs>
 		<user>cloudera</user>
 		<password>cloudera</password>
+		<twitter4j.version>4.0.2</twitter4j.version>
 	</properties>
 
 	<profiles>
@@ -52,7 +53,7 @@
 				<user>user</user>
 				<password>password</password>
 			</properties>
-		</profile>	
+		</profile>
 		<profile>
 			<id>must-be-removed</id>
 			<properties>
@@ -61,24 +62,19 @@
 				<user>hadoop</user>
 				<password>hadoop</password>
 			</properties>
-		</profile>	
+		</profile>
 	</profiles>
 
 	<dependencies>
 		<dependency>
-			<groupId>com.twitter</groupId>
-			<artifactId>hbc-core</artifactId> <!-- or hbc-twitter4j -->
-			<version>2.2.0</version> <!-- or whatever the latest version is -->
+			<groupId>com.lab.hadoop</groupId>
+			<artifactId>twitter-streaming</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.5.11</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>18.0</version>
+			<groupId>org.twitter4j</groupId>
+			<artifactId>twitter4j-core</artifactId>
+			<version>${twitter4j.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -111,7 +107,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>com.lab.hadoop.twitter.TweetStreaming</mainClass>
+							<mainClass>com.lab.hadoop.twitter.HappiestState</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
