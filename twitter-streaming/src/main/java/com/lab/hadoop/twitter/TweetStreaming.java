@@ -60,7 +60,7 @@ public class TweetStreaming {
 		// on a different thread, or multiple different threads....
 		while (!hosebirdClient.isDone()) {
 			String msg = msgQueue.take();
-			System.out.println(msg);
+			System.out.print(msg);
 		}
 
 		hosebirdClient.stop();
