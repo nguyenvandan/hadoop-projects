@@ -54,12 +54,12 @@
 			</properties>
 		</profile>	
 		<profile>
-			<id>must-be-removed</id>
+			<id>home-cloudera</id>
 			<properties>
-				<hadoop.server>10.228.124.172</hadoop.server>
-				<server.fs>/home/hadoop/twitter/</server.fs>
-				<user>hadoop</user>
-				<password>hadoop</password>
+				<hadoop.server>192.168.1.74</hadoop.server>
+				<server.fs>/home/cloudera/Hadoop/twitter/</server.fs>
+				<user>cloudera</user>
+				<password>cloudera</password>
 			</properties>
 		</profile>	
 	</profiles>
