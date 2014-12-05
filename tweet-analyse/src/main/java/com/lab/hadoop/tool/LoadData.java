@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,9 +14,9 @@ import java.util.StringTokenizer;
 public class LoadData {
 	
 	// Dictionary
-	private final static Map<String, Integer> dictionary = new HashMap<String, Integer>();
+	private Map<String, Integer> dictionary = new HashMap<String, Integer>();
 	// America states' latitude longitude data
-	private final static Map<String, List<double[]>> statesLatLong = new HashMap<String, List<double[]>>();
+	private Map<String, List<double[]>> statesLatLong = new HashMap<String, List<double[]>>();
 	
 	
 	/**
@@ -35,7 +34,7 @@ public class LoadData {
 	 * 
 	 * @return
 	 */
-	public static Map<String, Integer> getDictionary() {
+	public Map<String, Integer> getDictionary() {
 		return dictionary;
 	}
 	
@@ -44,7 +43,7 @@ public class LoadData {
 	 * 
 	 * @return
 	 */
-	public static Map<String, List<double[]>> getStatesLatLong() {
+	public Map<String, List<double[]>> getStatesLatLong() {
 		return statesLatLong;
 	}
 	
@@ -58,14 +57,12 @@ public class LoadData {
 	private void loadSentimentDictionary(String filename)
 			throws IOException {
 		BufferedReader br = null;
-		Map<String, Integer> dictionary = new HashMap<String, Integer>();
 		try {
 			br = openFile(filename);
 			String line = null;
 			while ((line = br.readLine()) != null) {
 				StringTokenizer lineToken = new StringTokenizer(line, "\t");
-				dictionary.put(lineToken.nextToken(),
-						Integer.valueOf(lineToken.nextToken().trim()));
+				dictionary.put(lineToken.nextToken(), Integer.valueOf(lineToken.nextToken().trim()));
 			}			
 		} finally {
 			// Close file
