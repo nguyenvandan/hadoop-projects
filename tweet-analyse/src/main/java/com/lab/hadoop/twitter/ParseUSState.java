@@ -10,7 +10,7 @@ import twitter4j.GeoLocation;
 
 import com.lab.hadoop.tool.LoadData;
 
-public class ParseState {
+public class ParseUSState {
 	
 	/**
 	 * 
@@ -19,6 +19,10 @@ public class ParseState {
 	 * @return
 	 */
 	public static String getState(GeoLocation geoLocation) {
+		
+		if (geoLocation == null) {
+			return null;
+		}
 		
 		Map<String, List<double[]>> statesLatLong = LoadData.getStatesLatLong();
 		
