@@ -34,7 +34,7 @@ public class WordCount {
 		job.setMapperClass(WordCountMapper.class);
 		job.setReducerClass(WordCountReducer.class);
 		
-		job.setInputFormatClass(CustomFileInputFormat.class);		
+		//job.setInputFormatClass(CustomFileInputFormat.class);		
 		
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(IntWritable.class);

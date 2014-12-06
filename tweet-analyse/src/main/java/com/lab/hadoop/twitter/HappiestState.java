@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import twitter4j.GeoLocation;
 import twitter4j.Status;
@@ -159,16 +161,23 @@ public class HappiestState {
 	 */
 	private void printHappiestState() {
 		int happiestStateScore = 0;
+		String happiestState = "NONE";
+		
+		SortedMap<String, Integer> m = new TreeMap<String, Integer>(statesScores);
 
-		for (String state : statesScores.keySet()) {
-			if (statesScores.get(state) > happiestStateScore) {
+		for (String state : m.keySet()) {
+			if (m.get(state) > happiestStateScore) {
 				happiestState = state;
+				happiestStateScore = m.get(state);
 			}
+			System.out.println(state + " : " + m.get(state));
 		}
 
 		System.out.println("*********** Happiest State in US **************");
 		System.out.println("            " + happiestState);
 		System.out.println("***********************************************");
+		
+		
 	}
 
 	/**

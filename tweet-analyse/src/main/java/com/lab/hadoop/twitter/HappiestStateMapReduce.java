@@ -9,21 +9,25 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
+import com.lab.hadoop.twitter.map.HappiestStateMapper;
+import com.lab.hadoop.twitter.reduce.HappiestStateReducer;
+
 public class HappiestStateMapReduce {
 	
 	public static void main(String[] args) throws Exception {
-		if (args.length < 2) {
+		if (args.length < 3) {
 			System.out
-					.println("Usage: java com.lab.hadoop.twitter.HappiestState [dictionary file] [tweets file]");
+					.println("Usage: java com.lab.hadoop.twitter.HappiestState [dictionary file] [tweets file] [output]");
 			System.exit(-1);
 		}
 		
-		FileSystem fs = FileSystem.get(new Configuration());		
+		Configuration conf = new Configuration();
+		conf.set("dictionaryURI", args[0]);
 		Path tweets = new Path(args[1]);
 		Path output = new Path(args[2]);
-		fs.delete(output, true);
-		
-		Job job = new Job();
+		FileSystem.get(new Configuration()).delete(output, true);
+				
+		Job job = new Job(conf);
 		job.setJarByClass(HappiestStateMapReduce.class);
 		job.setJobName("Happiest State MapReduce");
 				
@@ -32,6 +36,8 @@ public class HappiestStateMapReduce {
 		
 		job.setMapperClass(HappiestStateMapper.class);
 		job.setReducerClass(HappiestStateReducer.class);
+		
+		job.setCombinerClass(HappiestStateReducer.class);
 		
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(IntWritable.class);
