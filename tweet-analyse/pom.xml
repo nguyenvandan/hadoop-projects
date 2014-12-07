@@ -15,6 +15,7 @@
 		<user>cloudera</user>
 		<password>cloudera</password>
 		<twitter4j.version>4.0.2</twitter4j.version>
+		<flume.version>1.5.2</flume.version>
 	</properties>
 
 	<profiles>
