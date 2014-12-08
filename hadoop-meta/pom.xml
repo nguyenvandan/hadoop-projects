@@ -3,9 +3,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.lab.hadoop</groupId>
-		<artifactId>eco-hadoop</artifactId>
+		<artifactId>projects</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../eco-hadoop/pom.xml</relativePath>
 	</parent>
 
 
@@ -284,6 +283,7 @@
 					<groupId>org.apache.hadoop</groupId>
 					<artifactId>hadoop-common</artifactId>
 					<version>${hadoop.version}</version>
+					<scope>provided</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.apache.hadoop</groupId>
@@ -296,6 +296,7 @@
 					<groupId>org.apache.hadoop</groupId>
 					<artifactId>hadoop-hdfs</artifactId>
 					<version>${hadoop.version}</version>
+					<scope>provided</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.apache.hadoop</groupId>
@@ -308,26 +309,31 @@
 					<groupId>org.apache.hadoop</groupId>
 					<artifactId>hadoop-mapreduce-client-app</artifactId>
 					<version>${hadoop.version}</version>
+					<scope>provided</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.apache.hadoop</groupId>
 					<artifactId>hadoop-mapreduce-client-common</artifactId>
 					<version>${hadoop.version}</version>
+					<scope>provided</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.apache.hadoop</groupId>
 					<artifactId>hadoop-mapreduce-client-core</artifactId>
 					<version>${hadoop.version}</version>
+					<scope>provided</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.apache.hadoop</groupId>
 					<artifactId>hadoop-mapreduce-client-hs</artifactId>
 					<version>${hadoop.version}</version>
+					<scope>provided</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.apache.hadoop</groupId>
 					<artifactId>hadoop-mapreduce-client-jobclient</artifactId>
 					<version>${hadoop.version}</version>
+					<scope>provided</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.apache.hadoop</groupId>
@@ -340,6 +346,7 @@
 					<groupId>org.apache.hadoop</groupId>
 					<artifactId>hadoop-yarn-common</artifactId>
 					<version>${hadoop.version}</version>
+					<scope>provided</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.apache.hadoop</groupId>
@@ -355,20 +362,7 @@
 					<classifier>hadoop023</classifier>
 					<scope>test</scope>
 				</dependency>
-			</dependencies>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-compiler-plugin</artifactId>
-						<configuration>
-							<testExcludes>
-								<exclude>v3/MaxTemperatureDriverMiniTest.java</exclude> <!-- Failing -->
-							</testExcludes>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
+			</dependencies>			
 		</profile>
 
 		<profile>

@@ -6,9 +6,7 @@
   <packaging>pom</packaging>
   <modules>
   	<module>wordcount</module>
-  	<module>common</module>
   	<module>hadoop-meta</module>
-  	<module>eco-hadoop</module>
   	<module>twitter-streaming</module>
   	<module>tweet-analyse</module>
   </modules>
