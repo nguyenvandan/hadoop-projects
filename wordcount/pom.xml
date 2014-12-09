@@ -3,57 +3,101 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.lab.hadoop</groupId>
-		<artifactId>hadoop-meta</artifactId>
+		<artifactId>projects</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../hadoop-meta/pom.xml</relativePath>
 	</parent>
 	<artifactId>wordcount</artifactId>
 
-	<properties>
-		<hadoop.server>10.228.124.133</hadoop.server>
-		<server.fs>/home/cloudera/Hadoop/</server.fs>
-		<user>cloudera</user>
-		<password>cloudera</password>
+	<properties>		
+		<hadoop.version>2.5.2</hadoop.version>
 	</properties>
 
-	<profiles>
-		<profile>
-			<id>hadoopmaster</id>
-			<properties>
-				<hadoop.server>10.228.124.121</hadoop.server>
-				<server.fs>/home/hadoop/wordcount/</server.fs>
-				<user>hadoop</user>
-				<password>hadoop</password>
-			</properties>
-		</profile>		
-		<profile>
-			<id>hadoopnode</id>
-			<properties>
-				<hadoop.server>10.228.124.123</hadoop.server>
-				<server.fs>/home/hadoop/wordcount/</server.fs>
-				<user>hadoop</user>
-				<password>hadoop</password>
-			</properties>
-		</profile>
-		<profile>
-			<id>cloudera</id>
-			<properties>
-				<hadoop.server>10.228.124.133</hadoop.server>
-				<server.fs>/home/cloudera/Hadoop/</server.fs>
-				<user>cloudera</user>
-				<password>cloudera</password>
-			</properties>
-		</profile>
-		<profile>
-			<id>home-cloudera</id>
-			<properties>
-				<hadoop.server>192.168.1.74</hadoop.server>
-				<server.fs>/home/cloudera/Hadoop/wordcount/</server.fs>
-				<user>cloudera</user>
-				<password>cloudera</password>
-			</properties>
-		</profile>
-	</profiles>
+	<dependencies>
+		<!-- Hadoop -->
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-common</artifactId>
+			<version>${hadoop.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-common</artifactId>
+			<version>${hadoop.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-hdfs</artifactId>
+			<version>${hadoop.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-hdfs</artifactId>
+			<version>${hadoop.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-mapreduce-client-app</artifactId>
+			<version>${hadoop.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-mapreduce-client-common</artifactId>
+			<version>${hadoop.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-mapreduce-client-core</artifactId>
+			<version>${hadoop.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-mapreduce-client-hs</artifactId>
+			<version>${hadoop.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-mapreduce-client-jobclient</artifactId>
+			<version>${hadoop.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-mapreduce-client-jobclient</artifactId>
+			<version>${hadoop.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-yarn-common</artifactId>
+			<version>${hadoop.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-yarn-server-tests</artifactId>
+			<version>${hadoop.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.mrunit</groupId>
+			<artifactId>mrunit</artifactId>
+			<version>0.8.1-incubating</version>
+			<classifier>hadoop023</classifier>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<plugins>

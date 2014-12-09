@@ -50,7 +50,6 @@ public class TwitterSource extends AbstractSource
    * Flume configuration info, and can be used to retrieve any configuration
    * values necessary to set up the Source.
    */
-  @Override
   public void configure(Context context) {
     consumerKey = context.getString(TwitterSourceConstants.CONSUMER_KEY_KEY);
     consumerSecret = context.getString(TwitterSourceConstants.CONSUMER_SECRET_KEY);
