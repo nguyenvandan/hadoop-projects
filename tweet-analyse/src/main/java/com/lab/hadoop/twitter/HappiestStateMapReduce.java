@@ -26,6 +26,10 @@ public class HappiestStateMapReduce {
 		Path tweets = new Path(args[1]);
 		Path output = new Path(args[2]);
 		FileSystem.get(new Configuration()).delete(output, true);
+		
+		conf.setBoolean("mapreduce.map.output.compress", true);
+		conf.setBoolean("mapreduce.output.fileoutputformat.compress", false);
+		conf.set("mapred.map.output.compress.codec", "org.apache.hadoop.io.compress.SnappyCodec");
 				
 		Job job = new Job(conf);
 		job.setJarByClass(HappiestStateMapReduce.class);
@@ -37,7 +41,9 @@ public class HappiestStateMapReduce {
 		job.setMapperClass(HappiestStateMapper.class);
 		job.setReducerClass(HappiestStateReducer.class);
 		
-		job.setCombinerClass(HappiestStateReducer.class);
+		//job.setCombinerClass(HappiestStateReducer.class);
+		
+		//job.setInputFormatClass(CustomFileInputFormat.class);	
 		
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(IntWritable.class);

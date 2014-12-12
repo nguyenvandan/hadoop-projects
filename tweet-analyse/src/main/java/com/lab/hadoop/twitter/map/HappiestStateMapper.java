@@ -1,6 +1,7 @@
 package com.lab.hadoop.twitter.map;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Mapper.Context;
 
 import twitter4j.GeoLocation;
 import twitter4j.Status;
@@ -22,14 +24,16 @@ public class HappiestStateMapper extends
 	@Override
 	protected void setup(Context context) throws IOException,
 			InterruptedException {
+		System.out.println(context.getTaskAttemptID() + " - Starting setup " + new Date());
 		loadedData = new LoadData(context.getConfiguration().get("dictionaryURI"));
+		System.out.println(context.getTaskAttemptID() + " - Ended setup " + new Date());
 	}
 
 	@Override
 	protected void map(LongWritable key, Text value, Context context)
 			throws IOException, InterruptedException {
-		//String[] lines = value.toString().split(System.getProperty("line.separator"));
-		//for (String line : lines) {
+//		String[] lines = value.toString().split(System.getProperty("line.separator"));
+//		for (String line : lines) {
 			try {
 				Status status = TwitterObjectFactory.createStatus(value.toString());
 				String state = getState(status.getGeoLocation());
@@ -110,5 +114,11 @@ public class HappiestStateMapper extends
 			}
 		}
 		return totalScore;
+	}
+	
+	@Override
+	protected void cleanup(Context context
+            ) throws IOException, InterruptedException { 
+		System.out.println(context.getTaskAttemptID() + " - Finsished " + new Date());
 	}
 }
