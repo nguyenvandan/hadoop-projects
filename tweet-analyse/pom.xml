@@ -11,7 +11,7 @@
 	<properties>
 		<twitter4j.version>4.0.2</twitter4j.version>
 		<flume.version>1.5.2</flume.version>
-		<hadoop.version>2.5.2</hadoop.version>
+		<hadoop.version>2.10.1</hadoop.version>
 	</properties>
 
 	<dependencies>
